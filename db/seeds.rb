@@ -13,9 +13,3 @@ Trail.create(name: "Scuppernong Trail", length: 4.9, difficulty: "hard", descrip
 Trail.create(name: "Stute Springs Nature Trail", length: 1.5, difficulty: "moderate", description: "Hike to the top of 'Big Hill' for the highest vantage point in the Kettle Moraine", image: "https://images.unsplash.com/photo-1655126101989-fc7122521b66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHdpc2NvbnNpbiUyMHBhcmtzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60", park_id: 3)
 
 puts "✅ Done seeding!"
-t.string :name
-t.float :length
-t.string :difficulty
-t.string :description
-t.string :image
-t.integer :park_id
