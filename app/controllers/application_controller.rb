@@ -6,4 +6,42 @@ class ApplicationController < Sinatra::Base
     { message: "Good luck with your project!" }.to_json
   end
 
+  get "/parks" do
+    @parks = Park.all
+    @parks.to_json
+  end
+
+  get "/parks/:id" do
+    park = Park.find(params[:id])
+    park.trails.to_json
+    #DISPLAY A LIST OF ALL TRAILS FOR A SPECIFIC PARK
+  end
+ # get "/parks/:id/new" do
+    #RETURN AN HTML FORM FOR CREATING A NEW TRAIL BELONGING TO A SPECIFIC PARK
+  #end
+ # patch "/parks/:id/trail/:trail_id" do
+    #UPDATE A SPEPCIFC TRAIL BELONGING TO A SPECIFIC PARK
+  #  park = Parks.find(params[:id])
+   # trail = park.find(params[:trail_id])
+    #trail.update(#Code to update here)
+    #trail.to_json
+  #end
+  delete "/parks/:id/:trail_id" do
+    park = Park.find(params[:id])
+    park.trails.find(params[:trail_id]).destroy
+    #DELETE A SPECIFIC TRAIL BELONGING TO A SPECIFIC PARK
+  end
+
+ #post "/parks/:id" do
+  #CREATE A NEW TRAIL BELONGING TO A SPECIFIC PARK
+  #park = Park.new(params[:park])
+  #if park.save
+   # park.to_json
+ # else
+  #  { errors: park.errors.full_messages }.to_json
+  #end
+ #end
+
+
+
 end
