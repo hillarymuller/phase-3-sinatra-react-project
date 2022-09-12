@@ -16,9 +16,12 @@ class ApplicationController < Sinatra::Base
     park.trails.to_json
     #DISPLAY A LIST OF ALL TRAILS FOR A SPECIFIC PARK
   end
- # get "/parks/:id/new" do
+  post "/parks/:id" do
+    park = Park.find(params[:park_id])
+    park.trails << Trail.create(name: params[:name], difficulty: params[:difficulty], length: params[:length], park_id: params[:park_id], image: params[:image])
+    park.trails.to_json
     #RETURN AN HTML FORM FOR CREATING A NEW TRAIL BELONGING TO A SPECIFIC PARK
-  #end
+  end
  # patch "/parks/:id/trail/:trail_id" do
     #UPDATE A SPEPCIFC TRAIL BELONGING TO A SPECIFIC PARK
   #  park = Parks.find(params[:id])
@@ -28,7 +31,8 @@ class ApplicationController < Sinatra::Base
   #end
   delete "/parks/:id/:trail_id" do
     park = Park.find(params[:id])
-    park.trails.find(params[:trail_id]).destroy
+    trail = park.trails.find(params[:trail_id]).destroy
+    trail.to_json
     #DELETE A SPECIFIC TRAIL BELONGING TO A SPECIFIC PARK
   end
 
