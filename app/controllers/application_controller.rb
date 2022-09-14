@@ -11,24 +11,32 @@ class ApplicationController < Sinatra::Base
     @parks.to_json
   end
 
-  get "/parks/:id" do
+  get "/parks/:id/trails" do
     park = Park.find(params[:id])
     park.trails.to_json
     #DISPLAY A LIST OF ALL TRAILS FOR A SPECIFIC PARK
   end
-  post "/parks/:id" do
+  post "/parks/:id/trails" do
     park = Park.find(params[:park_id])
     park.trails << Trail.create(name: params[:name], difficulty: params[:difficulty], length: params[:length], park_id: params[:park_id], image: params[:image])
     park.trails.to_json
     #RETURN AN HTML FORM FOR CREATING A NEW TRAIL BELONGING TO A SPECIFIC PARK
   end
- # patch "/parks/:id/trail/:trail_id" do
+  post "/parks" do
+    park = Park.create(name: params[:name], description: params[:description], image: params[:image], location: params[:location])
+    park.to_json
+  end
+
+ patch "/parks/:id/:trail_id" do
     #UPDATE A SPEPCIFC TRAIL BELONGING TO A SPECIFIC PARK
-  #  park = Parks.find(params[:id])
-   # trail = park.find(params[:trail_id])
-    #trail.update(#Code to update here)
-    #trail.to_json
-  #end
+    park = Park.find(params[:id])
+    trail = park.trails.find(params[:trail_id])
+    trail.update(
+      favorite: params[:favorite]
+    )
+  park.trails.to_json
+  end
+
   delete "/parks/:id/:trail_id" do
     park = Park.find(params[:id])
     trail = park.trails.find(params[:trail_id]).destroy
