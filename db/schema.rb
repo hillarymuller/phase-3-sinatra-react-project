@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_31_203626) do
+ActiveRecord::Schema.define(version: 2022_09_14_163716) do
 
   create_table "parks", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2022_08_31_203626) do
     t.string "description"
     t.string "image"
     t.integer "park_id"
+    t.boolean "favorite"
   end
 
 end
