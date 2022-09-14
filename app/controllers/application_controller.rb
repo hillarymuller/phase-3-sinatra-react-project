@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
   delete "/parks/:id/:trail_id" do
     park = Park.find(params[:id])
     trail = park.trails.find(params[:trail_id]).destroy
-    trail.to_json
+    park.trails.to_json
     #DELETE A SPECIFIC TRAIL BELONGING TO A SPECIFIC PARK
   end
 
