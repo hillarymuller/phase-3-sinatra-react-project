@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
   end
   post "/parks" do
     park = Park.create(name: params[:name], description: params[:description], image: params[:image], location: params[:location])
-    park.to_json
+    Park.all.to_json
   end
 
  patch "/parks/:id/:trail_id" do
